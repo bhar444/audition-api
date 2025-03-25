@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Clone the repository
-RUN git clone https://github.com/bhara369/audition-api.git .
+RUN git clone https://github.com/bhar444/audition-api.git .
 
 # Install Gradle
 ARG GRADLE_VERSION=8.10.2
