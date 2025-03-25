@@ -228,7 +228,6 @@ class AuditionIntegrationClientTest {
     String expectedUrl = BASE_URL + POSTS_ENDPOINT + "/" + postId;
     String expectedExceptionMessage = "Failed to retrieve post with id " + postId;
 
-    //log.debug("Expected exception message: {}", expectedExceptionMessage);
 
     when(restTemplate.getForObject(expectedUrl, AuditionPost.class))
         .thenThrow(new RestClientException("API Error"));
@@ -239,7 +238,7 @@ class AuditionIntegrationClientTest {
         "Should throw SystemException when the API call fails"
     );
 
-    //log.debug("Caught SystemException: {}", exception.getMessage());
+
     assertEquals(expectedExceptionMessage, exception.getMessage(),
         "Exception message should indicate failure to retrieve the post");
     assertEquals("Integration Error", exception.getTitle(),

@@ -102,15 +102,7 @@ class AuditionServiceTest {
     assertEquals(0, result.size(), "Should return an empty list when no matches are found");
   }
 
-  @SuppressWarnings("PMD.DataflowAnomalyAnalysis")
-  void testApplyFiltersFilterByIdShouldReturnMatchingPost() {
-    // Use final to prevent modification
-    final List<AuditionPost> result = auditionService.applyFilters(null, 103);
-    assertAll("Validating filtered post by ID",
-        () -> assertEquals(1, result.size(), "Should return exactly one post with id=103"),
-        () -> assertEquals(103, result.get(0).getId(), "The returned post should have id=103")
-    );
-  }
+
 
   @Test
   void testGetPostsShouldReturnPostList() {
