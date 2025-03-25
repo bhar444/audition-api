@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 @Component
 @Slf4j
+@Getter
 public class AuditionIntegrationClient {
   /** Error message for integration failures. */
   public static final String INTEGRATION_ERROR = "Integration Error";
@@ -30,7 +32,7 @@ public class AuditionIntegrationClient {
   /** Endpoint for fetching posts. */
   private static final String POSTS_ENDPOINT = "/posts";
   /** RestTemplate for making HTTP requests. */
-  private final transient RestTemplate restTemplate;
+  private final RestTemplate restTemplate;
 
   /**
    * Constructor to inject RestTemplate dependency.

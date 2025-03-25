@@ -8,6 +8,7 @@ import com.audition.common.logging.AuditionLogger;
 import io.micrometer.common.util.StringUtils;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  * Controller Advice for handling exceptions.
  */
 @ControllerAdvice
+@Getter
 public class ExceptionControllerAdvice extends ResponseEntityExceptionHandler {
 
   public static final String DEFAULT_TITLE = "API Error Occurred";
@@ -45,7 +47,7 @@ public class ExceptionControllerAdvice extends ResponseEntityExceptionHandler {
   /**
    * Logger instance for logging events.
    */
-  private final transient AuditionLogger auditionLogger;
+  private final AuditionLogger auditionLogger;
 
   /**
    * Constructor for ExceptionControllerAdvice.

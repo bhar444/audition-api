@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import lombok.Getter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.BufferingClientHttpRequestFactory;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * Configuration class for web services.
  */
 @Configuration
+@Getter
 public class WebServiceConfiguration implements WebMvcConfigurer {
 
   private static final String YEAR_MONTH_DAY_PATTERN = "yyyy-MM-dd";
@@ -30,7 +32,7 @@ public class WebServiceConfiguration implements WebMvcConfigurer {
   /**
    * List of interceptors.
    */
-  transient List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
+  List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
 
   /**
    * Create a bean for MappingJackson2HttpMessageConverter.

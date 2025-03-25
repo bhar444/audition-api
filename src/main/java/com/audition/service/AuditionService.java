@@ -5,6 +5,7 @@ import com.audition.model.AuditionPost;
 import com.audition.model.Comment;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
  * Service class for Audition application.
  */
 @Service
+@Getter
 public class AuditionService {
 
   public static final String USER_ID = "userId";
@@ -19,8 +21,8 @@ public class AuditionService {
   /**
    * The AuditionIntegrationClient instance.
    */
-  @Autowired
-  private final transient  AuditionIntegrationClient auditionIntegrationClient;
+
+  private final  AuditionIntegrationClient auditionIntegrationClient;
 
   /**
    * Constructor for AuditionService.
