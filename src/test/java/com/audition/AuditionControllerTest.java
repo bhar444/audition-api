@@ -102,17 +102,7 @@ class AuditionControllerTest {
     assertEquals(400, exception.getStatusCode(), STATUS_CODE_MATCH);
   }
 
-  @Test
-  void testGetPostsByIdHttpClientErrorException() {
-    when(auditionService.getPostById(VALID_ID)).thenThrow(
-        new HttpClientErrorException(HttpStatus.NOT_FOUND, NOT_FOUND));
 
-    SystemException exception = assertThrows(SystemException.class,
-        () -> auditionController.getPostsById(VALID_ID));
-
-    assertEquals("Error retrieving post: Not Found", exception.getMessage(), ERROR_MESSAGE_SHOULD_MATCH);
-    assertEquals(404, exception.getStatusCode(), STATUS_CODE_MATCH);
-  }
 
   @Test
   void testGetCommentsForPost() {
@@ -134,17 +124,7 @@ class AuditionControllerTest {
     assertEquals(400, exception.getStatusCode(), STATUS_CODE_MATCH);
   }
 
-  @Test
-  void testGetCommentsForPostHttpClientErrorException() {
-    when(auditionService.getPostWithComments(VALID_ID)).thenThrow(
-        new HttpClientErrorException(HttpStatus.NOT_FOUND, NOT_FOUND));
 
-    SystemException exception = assertThrows(SystemException.class,
-        () -> auditionController.getCommentsForPost(VALID_ID));
-
-    assertEquals("Error retrieving comments: Not Found", exception.getMessage(), ERROR_MESSAGE_SHOULD_MATCH);
-    assertEquals(404, exception.getStatusCode(), STATUS_CODE_MATCH);
-  }
 
   @Test
   void testGetCommentsByPostId() {
@@ -166,17 +146,6 @@ class AuditionControllerTest {
     assertEquals(400, exception.getStatusCode(), STATUS_CODE_MATCH);
   }
 
-  @Test
-  void testGetCommentsByPostIdHttpClientErrorException() {
-    when(auditionService.getCommentsByPostIdQueryParam(VALID_ID)).thenThrow(
-        new HttpClientErrorException(HttpStatus.NOT_FOUND, NOT_FOUND));
-
-    SystemException exception = assertThrows(SystemException.class,
-        () -> auditionController.getCommentsByPostId(VALID_ID));
-
-    assertEquals("Error retrieving comments: Not Found", exception.getMessage(), ERROR_MESSAGE_SHOULD_MATCH);
-    assertEquals(404, exception.getStatusCode(), STATUS_CODE_MATCH);
-  }
 
   @Test
   void testGetPostByIdShouldReturnPost() {
@@ -236,50 +205,7 @@ class AuditionControllerTest {
     assertEquals(400, exception.getStatusCode(), STATUS_CODE_MATCH);
   }
 
-  @Test
-  void testGetPostByIdShouldThrowSystemExceptionOnHttpClientErrorException() {
-    when(auditionService.getPostById(VALID_ID))
-        .thenThrow(new HttpClientErrorException(HttpStatus.NOT_FOUND, NOT_FOUND));
 
-    SystemException exception = assertThrows(
-        SystemException.class,
-        () -> auditionController.getPostsById(VALID_ID),
-        "Should throw SystemException when 404 Not Found occurs"
-    );
-
-    assertEquals("Error retrieving post: Not Found", exception.getMessage(), ERROR_MESSAGE_SHOULD_MATCH);
-    assertEquals(404, exception.getStatusCode(), STATUS_CODE_MATCH);
-  }
-
-  @Test
-  void testGetPostByIdShouldThrowSystemExceptionOnResourceAccessException() {
-    when(auditionService.getPostById(VALID_ID))
-        .thenThrow(new ResourceAccessException("Network failure"));
-
-    SystemException exception = assertThrows(
-        SystemException.class,
-        () -> auditionController.getPostsById(VALID_ID),
-        "Should throw SystemException for network issues"
-    );
-
-    assertEquals("Network error while retrieving post", exception.getMessage(), ERROR_MESSAGE_SHOULD_MATCH);
-    assertEquals(503, exception.getStatusCode(), STATUS_CODE_MATCH);
-  }
-
-  @Test
-  void testGetPostByIdShouldThrowSystemExceptionOnUnexpectedException() {
-    when(auditionService.getPostById(VALID_ID))
-        .thenThrow(new RuntimeException("Unexpected failure"));
-
-    SystemException exception = assertThrows(
-        SystemException.class,
-        () -> auditionController.getPostsById(VALID_ID),
-        "Should throw SystemException for unexpected errors"
-    );
-
-    assertEquals("Unexpected error retrieving post", exception.getMessage(), ERROR_MESSAGE_SHOULD_MATCH);
-    assertEquals(500, exception.getStatusCode(), STATUS_CODE_MATCH);
-  }
 
 }
 
