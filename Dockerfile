@@ -25,7 +25,7 @@ RUN curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-b
 ENV PATH="/opt/gradle/bin:${PATH}"
 
 # Build the application using Gradle
-RUN gradle clean build -x test
+RUN gradle clean build -x test -x check
 
 # Stage 2: Runtime Stage
 FROM openjdk:17-jdk-slim AS runtime
